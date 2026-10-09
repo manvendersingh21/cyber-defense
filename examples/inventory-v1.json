@@ -1,0 +1,53 @@
+{
+  "schema_version": "cyber-defense/inventory/v1",
+  "producer": "example-synthetic",
+  "environment_id": "lab-demo",
+  "assets": [
+    {
+      "id": "external",
+      "kind": "entrypoint"
+    },
+    {
+      "id": "frontend",
+      "kind": "workload"
+    },
+    {
+      "id": "canary",
+      "kind": "protected-canary"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "external",
+      "target": "frontend",
+      "relation": "CAN_REACH",
+      "evidence_ids": [
+        "cfg-001"
+      ]
+    },
+    {
+      "source": "frontend",
+      "target": "canary",
+      "relation": "CAN_REACH",
+      "evidence_ids": [
+        "cfg-002"
+      ]
+    }
+  ],
+  "entrypoints": [
+    "external"
+  ],
+  "protected_assets": [
+    "canary"
+  ],
+  "evidence": [
+    {
+      "id": "cfg-001",
+      "type": "synthetic-config"
+    },
+    {
+      "id": "cfg-002",
+      "type": "synthetic-config"
+    }
+  ]
+}

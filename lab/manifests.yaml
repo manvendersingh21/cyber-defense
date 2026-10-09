@@ -12,13 +12,6 @@ metadata:
   namespace: cyber-lab
 automountServiceAccountToken: false
 ---
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: honeypot-reader
-  namespace: cyber-lab
-automountServiceAccountToken: false
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -34,7 +27,7 @@ spec:
         app: frontend
         cyber-defense/entrypoint: "true"
     spec:
-      serviceAccountName: honeypot-reader
+      serviceAccountName: lab-workloads
       automountServiceAccountToken: false
       containers:
         - name: client
